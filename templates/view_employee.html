@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}View Employee{% endblock %}
+
+{% block content %}
+    <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">{{ employee['name'] }}</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-borderless">
+                <tr><th style="width: 200px;">Employee ID</th><td>{{ employee['id'] }}</td></tr>
+                <tr><th>Email</th><td>{{ employee['email'] }}</td></tr>
+                <tr><th>Phone</th><td>{{ employee['phone'] or '—' }}</td></tr>
+                <tr><th>Department</th><td>{{ employee['department'] }}</td></tr>
+                <tr><th>Position</th><td>{{ employee['position'] }}</td></tr>
+                <tr><th>Salary</th><td>₹{{ "%.2f"|format(employee['salary']) }}</td></tr>
+                <tr><th>Date of Joining</th><td>{{ employee['date_of_joining'] or '—' }}</td></tr>
+            </table>
+
+            <a href="{{ url_for('edit_employee', emp_id=employee['id']) }}" class="btn btn-warning">Edit</a>
+            <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Back to List</a>
+        </div>
+    </div>
+{% endblock %}
